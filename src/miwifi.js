@@ -1,7 +1,7 @@
 const urljoin = require('url-join');
 const querystring = require('querystring');
 const axios = require('axios');
-const Encrypt = require('./Encrypt');
+const Encrypt = require('./lib/Encrypt');
 
 class MiWifi {
   constructor(params = {}) {
@@ -32,11 +32,9 @@ class MiWifi {
       nonce: nonce
     };
 
-    axios.post(this.buildurl('/cgi-bin/luci/api/xqsystem/login'), querystring.stringify(param)).then(result => {
+    return axios.post(this.buildurl('/cgi-bin/luci/api/xqsystem/login'), querystring.stringify(param)).then(result => {
       this.token = result.data.token;
-      this.status().then(res => {
-        console.log(res.data);
-      })
+      return this.token;
     });
   }
 
