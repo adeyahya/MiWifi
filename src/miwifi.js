@@ -40,8 +40,28 @@ class MiWifi {
     });
   }
 
+  logout() {
+    return axios.get(urljoin(this.address, '/cgi-bin/luci/;stok=' + this.token, 'web', 'logout'));
+  }
+
   status() {
     return this.getApiEndpoint('misystem/status');
+  }
+
+  deviceList() {
+    return this.getApiEndpoint('misystem/devicelist');
+  }
+
+  setWanOff(mac) {
+    return this.getApiEndpoint(`xqsystem/set_mac_filter?mac=${mac}&wan=0`);
+  }
+
+  setWanOn(mac) {
+    return this.getApiEndpoint(`xqsystem/set_mac_filter?mac=${mac}&wan=1`);
+  }
+
+  getWifiDetail() {
+    return this.getApiEndpoint('xqnetwork/wifi_detail_all');
   }
 }
 
