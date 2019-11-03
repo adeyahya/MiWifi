@@ -65,5 +65,7 @@ class MiWifi {
   }
 }
 
+module.exports = MiWifi;
+
 // const wifi = new MiWifi({mac: 'f0:18:98:a8:75:f6'});
 // wifi.login('password');
